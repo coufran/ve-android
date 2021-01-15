@@ -3,7 +3,7 @@ package cn.coufran.ve.android;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -15,10 +15,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         WebView webView = this.findViewById(R.id.webView);
-        webView.getSettings().setJavaScriptEnabled(true);
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
 //        webView.getSettings().setPluginsEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);
-        webView.loadUrl("http://10.112.21.173");
+        settings.setDomStorageEnabled(true);
+        webView.loadUrl(this.getString(R.string.url));
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
